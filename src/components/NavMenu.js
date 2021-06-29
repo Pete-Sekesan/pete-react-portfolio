@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { MdMenu, MdClose } from 'react-icons/md';
 
 const NavMenuStyles = styled.div`
 position: fixed;
@@ -40,11 +41,18 @@ function NavMenu() {
     return (
      
         <NavMenuStyles>
+            <div className="mobile-menu-icon">
+                <MdMenu/>
+            </div>
             <ul>
+                <div className="closeNavIcon">
+                    <MdClose />
+                    </div>
                 <li><NavLink to ="/" exact>Home</NavLink></li>
                 <li><NavLink to ="/about">About</NavLink></li>
                 <li><NavLink to ="/projects">Projects</NavLink></li>
-                <li><NavLink to ="/contact">Contact</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    
             </ul>
         </NavMenuStyles>
         
