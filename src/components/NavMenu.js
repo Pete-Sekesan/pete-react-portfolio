@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { MdClose, MdMenu } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { MdMenu, MdClose } from 'react-icons/md';
 
 const NavMenuStyles = styled.div`
 position: fixed;
@@ -48,6 +48,9 @@ a{
     display:none;
 }
 @media only screen and (max-width: 768px){
+    .hide-item{
+        transform: translateY(calc(-100% - var(--top)))
+    }
     .mobile-menu-icon{
         display:block;
     }
@@ -84,14 +87,20 @@ a{
 `
 
 function NavMenu() {
+    const [showNav, setShowNav] = useState(false);
     return (
      
         <NavMenuStyles>
             <div className="mobile-menu-icon">
                 <MdMenu/>
             </div>
-            <ul className="navItems">
-                <div className="closeNavIcon">
+            <ul className={!showNav ? 'navItems hide-item' : 'navItems'}>
+                <div className="closeNavIcon"
+                    onClick={() => setShowNav(!showNav)}
+                    role="button"
+                    onKeyDown={() => setShowNav(!showNav)}
+                    tabIndex={0}>
+                    
                     <MdClose />
                     </div>
                 <li><NavLink to ="/" exact>Home</NavLink></li>
